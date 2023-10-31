@@ -1,15 +1,35 @@
 import { Input, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "../api";
 import { login } from "../services/login";
 import { AppButton } from "./AppButton";
 
+interface UserData {
+    email: string;
+    password: string;
+    name: string;
+}
+
 const LoginForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [userData, setUserdata] = useState<null | UserData>();
+
+    useEffect(() => {
+        api.then((result: any | UserData) => {
+            setUserdata(result);
+        });
+    });
 
     return (
         <>
-            <Text as="b" fontSize="2xl" marginBottom="16px">Faça o Login</Text>
+            {
+                userData === null || userData === undefined ?
+                    <Text>Loading...</Text> :
+                    <Text>Informações carregadas</Text>
+            }
+            <Text>Olá, {userData?.name}</Text>
+            <Text as="b" fontSize="2xl" marginBottom="8px">Faça o Login</Text>
             <Input
                 marginBottom={"16px"}
                 placeholder="Email"

@@ -1,20 +1,13 @@
-import { ReactNode } from "react";
-import Footer from "./Footer";
+import { Box } from "@chakra-ui/react";
 import Header from "./Header";
 
-type LayoutChildren = {
-    children: ReactNode;
-}
 
-const Layout = ({ children }: LayoutChildren) => {
+const Layout = ({ children }: any) => {
     return (
-        <div>
+        <Box minHeight='100vh'>
             <Header />
-            <main>
-                {children}
-            </main>
-            <Footer />
-        </div>
+            {children}
+        </Box>
     );
 };
 

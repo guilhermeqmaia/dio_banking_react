@@ -24,11 +24,8 @@ const LoginForm = () => {
     return (
         <>
             {
-                userData === null || userData === undefined ?
-                    <Text>Loading...</Text> :
-                    <Text>Informações carregadas</Text>
+                userData !== null && userData !== undefined && <Text>Olá, {userData.name}</Text>
             }
-            <Text>Olá, {userData?.name}</Text>
             <Text as="b" fontSize="2xl" marginBottom="8px">Faça o Login</Text>
             <Input
                 marginBottom={"16px"}
